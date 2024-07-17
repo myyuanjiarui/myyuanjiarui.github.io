@@ -1,4 +1,3 @@
-<meta name="referrer" content="no-referrer" />
 ---
 title: Linux下Typora+Gitee+picgo图床环境搭建
 date: 2023-01-15 00:02
