@@ -1,16 +1,8 @@
 ---
 title: README
 date: 2024-07-10 21:27:07
-tags:
+tags: Hello
 ---
 # Hello Hexo
 ## Hexo can create
 ## Hexo can run
-It is ==important==
-`IMPORTANT`
-```python
-print("Hello World!")
-what can I say?
-```
-
-![test](https://github.com/myyuanjiarui/myyuanjiarui.github.io/blob/main/test.png)
