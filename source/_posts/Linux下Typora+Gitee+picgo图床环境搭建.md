@@ -3,6 +3,10 @@ title: Linux下Typora+Gitee+picgo图床环境搭建
 date: 2023-01-15 00:02
 tags:
 ---
+<head>
+  <meta name="referrer" content="no-referrer" />
+</head>
+
 ### 前言
 
 在Linux下写Markdown笔记的时候，像上传到github上，结果发现笔记里的图片都成了这个样子：
