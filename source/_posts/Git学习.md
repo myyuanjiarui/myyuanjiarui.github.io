@@ -129,5 +129,3 @@ Git引入Tag的目的是将某个commit绑定上一个容易记住的名字。
 5. 还可以创建带有说明的标签，用-a指定标签名，-m指定说明文字：`git tag -a v0.1 -m "version 0.1 released" 1094adb`
 6. 如果要推送某个标签到远程，使用命令`git push origin <tagname>`
 
-
-
