@@ -1,11 +1,13 @@
----
 title: Git学习
 date: 2024-02-23 11:14 
+
 tags:
 ---
+
 <head>
   <meta name="referrer" content="no-referrer" />
 </head>
+
 
 ## 集中式VS分布式
 
@@ -14,18 +16,35 @@ tags:
 - 分布式版本控制系统更安全
 - 分布式版本控制系统通常也有一台充当“中央服务器”的电脑，但这只是为了方便“交换”大家的修改，没有它并不影响正常工作
 
-## Git的安装
+## Git config
 
 - 因为Git是分布式版本控制系统，所以每台机器都必须指定自己的名字和邮件地址
 
-```shell
-git config --global user.name "Your Name"
-git config --global user.email "email@example.com"
-```
+  ```bash
+  git config --global user.name "Your Name"
+  git config --global user.email "email@example.com"
+  ```
+
+- 查看已有配置和它们所在的文件
+
+  ```bash
+  git config --list --show-origin
+  ```
+
+  输出可能会有重复的变量名，因为Git会从不同的文件中读取同一个配置（例如：/etc/gitconfig与~/.gitconfig）。这种情况下，Git会使用它找到的每一个变量的最后一个配置。可以通过输入`git config <key>`来检查某一项配置：
+
+  ```bash
+  $ git config user.name
+  John Doe
+  ```
+
+
 
 ## 查看提交记录
 
-`git log`
+```
+git log
+```
 
 ## 创建版本库
 
@@ -128,4 +147,3 @@ Git引入Tag的目的是将某个commit绑定上一个容易记住的名字。
 4. 默认标签是打在最新提交的commit上的，如果要打在历史的commit上，就要找到历史的commit id，即`git log`，然后打上就行，即`git tag <name> <commit id>`。
 5. 还可以创建带有说明的标签，用-a指定标签名，-m指定说明文字：`git tag -a v0.1 -m "version 0.1 released" 1094adb`
 6. 如果要推送某个标签到远程，使用命令`git push origin <tagname>`
-
