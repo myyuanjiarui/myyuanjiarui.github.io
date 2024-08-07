@@ -9,6 +9,7 @@ tags:
 </head>
 
 
+
 ## 集中式VS分布式
 
 - 集中式的版本库是集中存放在中央服务器的
@@ -78,7 +79,10 @@ git remote add origin git@gitee.com:Marches7/仓库名.git
   - 第一步：`git reset HEAD <file>`
   - 第二步：`git checkout -- <file>`
 - 已经提交了不合适的修改到版本库时，想要撤销本次提交，前提是没有提交到远程库：
-  - 回退到之前的版本：`git reset --hard HEAD^`
+  - 回退到之前的版本：`git reset --hard HEAD^`或者`git reset --hard <完整的comit id>`
+- 如果已经提交到了远程库，并且希望远程库也回退
+  - 本地回退：`git reset --hard HEAD^`或者`git reset --hard <完整的comit id>`
+  - 远程回退（强制push）：`git push --force`，这里采用默认的分支
 
 git reset: 这是 Git 中的主要命令之一，用于重置当前 HEAD 到指定状态。
 --hard: 这是 git reset 命令的一个选项，用于指定重置的模式。在 --hard 模式下，Git 将重置工作目录和索引（暂存区）以匹配你要重置到的提交。这意味着所有自上次提交以来对工作目录和索引的更改都将被丢弃。
