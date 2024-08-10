@@ -1,6 +1,8 @@
 ---
 title: Azure创建虚拟机过程解决报错
 date: 2023-05-13 16:33 
+categories:
+- Linux
 tags:
 ---
 <head>

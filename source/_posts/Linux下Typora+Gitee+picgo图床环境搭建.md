@@ -1,6 +1,8 @@
 ---
 title: Linux下Typora+Gitee+picgo图床环境搭建
 date: 2023-01-15 00:02
+categories:
+- Linux
 tags:
 ---
 <head>

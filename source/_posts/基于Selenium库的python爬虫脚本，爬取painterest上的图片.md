@@ -1,6 +1,8 @@
 ---
 title: 基于Selenium库的python爬虫脚本，爬取painterest上的图片
 date: 2023-06-04 18:48 
+categories:
+- Python
 tags:
 ---
 <head>

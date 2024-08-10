@@ -1,6 +1,8 @@
 ---
 title: CUMT中国矿业大学校园网自动登录脚本
 date: 2023-02-26 21:14
+categories:
+- Python
 tags:
 ---
 <head>

@@ -1,6 +1,8 @@
 ---
 title: VMware Workstation虚拟机借助Windows主机上的Clash代理上网
 date: 2023-01-12 17:31
+categories:
+- 网络
 tags:
 ---
 

@@ -1,6 +1,8 @@
 ---
 title: Ubuntu20.04使终端用户名颜色高亮
 date: 2023-05-28 18:08 
+categories:
+- Linux
 tags:
 ---
 <head>
