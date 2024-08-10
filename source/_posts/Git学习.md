@@ -10,7 +10,7 @@ tags:
   <meta name="referrer" content="no-referrer" />
 </head>
 
-
+# Git 概念
 
 ## 集中式VS分布式
 
@@ -19,7 +19,96 @@ tags:
 - 分布式版本控制系统更安全
 - 分布式版本控制系统通常也有一台充当“中央服务器”的电脑，但这只是为了方便“交换”大家的修改，没有它并不影响正常工作
 
-## Git config
+## 文件忽略
+
+当我们希望有些文件无需纳入 Git 的管理，也不希望它们总出现在未跟踪文件列表。就可以在仓库根目录下编写`.gitignore`文件，文件内容支持正则表达式，下面是一个例子：
+
+```bash
+.DS_Store
+Thumbs.db
+db.json
+*.log
+node_modules/
+public/
+.deploy*/
+_multiconfig.yml
+```
+
+> [!TIP]
+>
+> GitHub 有一个十分详细的针对数十种项目及语言的 `.gitignore` 文件列表， 你可以在 https://github.com/github/gitignore 找到它
+
+
+
+## 子模块
+
+`.gitmodules` 文件是用于管理 Git 子模块（submodules）的配置文件。当你在 Git 仓库中嵌入另一个 Git 仓库（即子模块）时，`.gitmodules` 文件会记录子模块的相关信息，比如子模块的路径和来源。
+
+添加子模块命令：
+
+```bash
+git submodule add https://github.com/example/example-submodule.git path/to/submodule
+```
+
+然后git会自动生成`.gitmodules`文件，并将子模块信息写入其中。
+
+`.gitmodules` 文件的内容可能如下所示：
+
+```bash
+[submodule "path/to/submodule"]
+    path = path/to/submodule
+    url = https://github.com/example/example-submodule.git
+	#branch = main 还可以自己指定分支
+```
+
+# Git流程
+
+## 1. 创建版本库
+
+- 版本库又称为仓库(repository)，仓库里面的所有文件都可以被Git管理起来，每个文件的增删改查都被Git跟踪
+- 初始化当前文件夹为仓库：`git init`
+- 添加文件到Git仓库，分两步：
+  1. `git add <file>`。可以多次使用命令，多次添加文件
+  2. `git commmit -m <message>`
+
+## 2. 添加到远程库
+
+在Github/Gitee中添加一个仓库，然后根据Github/Gitee的提示，在本地的仓库下运行
+
+```shell
+git remote add origin git@gitee.com:Marches7/仓库名.git # 可以换成https链接
+```
+
+上述命令的含义是添加一个名为origin，链接为...的远程仓库，方便我们使用名称来指定远程仓库。
+
+> 当你的仓库是git clone下来的，则会自动添加remote信息，默认名称是origin。
+
+## 3. 多人协作
+
+### 3.1 抓取分支
+
+多人协作时，大家都会往master和dev分支上推送各自的修改。模拟一个新的小伙伴协作开发。
+
+1. 使用git clone将仓库克隆到自己的电脑。默认情况下只能看到本地的master分支。
+2. 要在dev分支上开发，就必须创建远程origin的dev分支到本地：`git checkout -b dev origin/dev`
+3. 现在就可以在dev分支上开发了，时不时可以把dev分支push到远程
+
+### 3.2 推送分支到远程库
+
+推送本地分支到远程库：`git push <remote> <branch>`
+
+> 远程库的名字就是origin，这是Git默认的叫法，也可以改成别的，但是origin这个名字一看就知道是远程库。
+
+### 3.3 流程
+
+1. 首先，可以试图用git push origin <branch-name>推送自己的修改
+2. 如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并
+3. 如果合并有冲突，则解决冲突，并在本地提交
+4. 没有冲突或者解决掉冲突后，再用git push origin <branch-name>推送就能成功
+
+# Git命令详解
+
+## Git配置
 
 - 因为Git是分布式版本控制系统，所以每台机器都必须指定自己的名字和邮件地址
 
@@ -41,29 +130,26 @@ tags:
   John Doe
   ```
 
+## 查看提交记录和状态
 
+- 查看所有提交日志：
 
-## 查看提交记录
+  ```bash
+  git log
+  ```
 
-```
-git log
-```
+  或者简洁输出（每个提交一行）：
 
-## 创建版本库
+  ```bash
+  git log --pretty=oneline
+  ```
 
-- 版本库又称为仓库(repository)，仓库里面的所有文件都可以被Git管理起来，每个文件的增删改查都被Git跟踪
-- 初始化当前文件夹为仓库：`git init`
-- 添加文件到Git仓库，分两步：
-  1. `git add <file>`。可以多次使用命令，多次添加文件
-  2. `git commmit -m <message>`
+- 查看当前git 分支状态：
 
-## 添加到远程库
-
-在Github/Gitee中添加一个仓库，然后根据Github/Gitee的提示，在本地的仓库下运行
-
-```shell
-git remote add origin git@gitee.com:Marches7/仓库名.git
-```
+  ```bash
+  git status # 复杂输出版
+  git status -s # 简化输出版
+  ```
 
 ## 撤销修改
 
@@ -74,21 +160,36 @@ git remote add origin git@gitee.com:Marches7/仓库名.git
 > 其中的stage称为是暂存区
 
 - 当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时：
+
   - `git checkout -- <file>`，会有两种情况：
     1. 一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态。
     2. 一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
+
 - 当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改：
+
   - 第一步：`git reset HEAD <file>`
   - 第二步：`git checkout -- <file>`
+
 - 已经提交了不合适的修改到版本库时，想要撤销本次提交，前提是没有提交到远程库：
-  - 回退到之前的版本：`git reset --hard HEAD^`或者`git reset --hard <完整的comit id>`
+
+  - 修改后重新提交（覆盖上一次提交）：`git commit --amend`
+
+    > 这种方法的价值是可以稍微改进你的最后的提交，而不会让小修补这样的垃圾提交信息弄乱你的仓库历史。
+
+  - 回退到之前某个的版本：`git reset --hard HEAD^`或者`git reset --hard <完整的comit id>`
+
 - 如果已经提交到了远程库，并且希望远程库也回退
+
   - 本地回退：`git reset --hard HEAD^`或者`git reset --hard <完整的comit id>`
   - 远程回退（强制push）：`git push --force`，这里采用默认的分支
 
 git reset: 这是 Git 中的主要命令之一，用于重置当前 HEAD 到指定状态。
 --hard: 这是 git reset 命令的一个选项，用于指定重置的模式。在 --hard 模式下，Git 将重置工作目录和索引（暂存区）以匹配你要重置到的提交。这意味着所有自上次提交以来对工作目录和索引的更改都将被丢弃。
-HEAD^: 这指定了重置操作的目标提交。HEAD 是一个指向你当前所在分支的最新提交的指针。HEAD^（或者 HEAD~1）表示当前分支的父提交，即当前提交的前一个提交。HEAD^^（或者HEAD~2）表示当前分支的前前个提交
+HEAD^: 这指定了重置操作的目标提交。HEAD 是一个指向你当前所在分支的最新提交的指针。HEAD^（或者 HEAD~1）表示当前分支的父提交，即当前提交的前一个提交。HEAD^^（或者HEAD~2）表示当前分支的前前个提交。
+
+> [!TIP]
+>
+> 在Git中任何已提交的东西几乎总是可以恢复的，但是未提交的东西丢失后很可能就无法恢复了。
 
 ## 分支管理
 
@@ -119,29 +220,6 @@ Bug修复完成后，需要恢复现场，有两种方法：
 但是之后会想到一个问题，我们修改的Bug在main分支上，意味着我们工作的分支也有Bug，有必要重复修改本分支的Bug再合并到当前分支上吗？有没有更简单的方法？
 为了方便操作，避免重复矛盾，Git专门提供了一个`git cherry-pick 4c805e2`命令，让我们能复制一个特定的提交到当前分支，4c805e2是Bug提交的commit的号码。
 
-## 多人协作
-
-### 抓取分支
-
-多人协作时，大家都会往master和dev分支上推送各自的修改。模拟一个新的小伙伴协作开发。
-
-1. 使用git clone将仓库克隆到自己的电脑。默认情况下只能看到本地的master分支。
-2. 要在dev分支上开发，就必须创建远程origin的dev分支到本地：`git checkout -b dev origin/dev`
-3. 现在就可以在dev分支上开发了，时不时可以把dev分支push到远程
-
-### 推送分支到远程库
-
-推送dev分支到远程库：`git push origin dev`
-
-> 远程库的名字就是origin，这是Git默认的叫法，也可以改成别的，但是origin这个名字一看就知道是远程库。
-
-### 流程
-
-1. 首先，可以试图用git push origin <branch-name>推送自己的修改
-2. 如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并
-3. 如果合并有冲突，则解决冲突，并在本地提交
-4. 没有冲突或者解决掉冲突后，再用git push origin <branch-name>推送就能成功
-
 ## 标签管理
 
 Git引入Tag的目的是将某个commit绑定上一个容易记住的名字。
@@ -151,5 +229,44 @@ Git引入Tag的目的是将某个commit绑定上一个容易记住的名字。
 2. 敲命令`git tag <name>`就可以打一个标签，例如`git tag v1.0`
 3. 可以用`git tag`查看所有的标签
 4. 默认标签是打在最新提交的commit上的，如果要打在历史的commit上，就要找到历史的commit id，即`git log`，然后打上就行，即`git tag <name> <commit id>`。
-5. 还可以创建带有说明的标签，用-a指定标签名，-m指定说明文字：`git tag -a v0.1 -m "version 0.1 released" 1094adb`
+5. 删除本地标签：`git tag -d <tagname>`
 6. 如果要推送某个标签到远程，使用命令`git push origin <tagname>`
+
+## 远程仓库
+
+- 查看连接的远程仓库
+
+  ```bash
+  $ git remote -v
+  origin	https://github.com/schacon/ticgit (fetch)
+  origin	https://github.com/schacon/ticgit (push)
+  ```
+
+- 查看与远程仓库的交互信息
+
+  ```bash
+  $ git remote show origin
+  * remote origin
+    Fetch URL: https://github.com/schacon/ticgit
+    Push  URL: https://github.com/schacon/ticgit
+    HEAD branch: master
+    Remote branches:
+      master                               tracked
+      dev-branch                           tracked
+    Local branch configured for 'git pull':
+      master merges with remote master
+    Local ref configured for 'git push':
+      master pushes to master (up to date)
+  ```
+
+- 远程仓库的重命名和移除
+
+  ```bash
+  git remote rename <origin> <target>
+  ```
+
+  ```bash
+  git remote remove <name>
+  ```
+
+  
