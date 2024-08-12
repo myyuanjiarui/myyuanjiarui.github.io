@@ -101,10 +101,10 @@ git remote add origin git@gitee.com:Marches7/仓库名.git # 可以换成https�
 
 ### 3.3 流程
 
-1. 首先，可以试图用git push origin <branch-name>推送自己的修改
-2. 如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并
+1. 首先，可以试图用`git push origin <branch-name>`推送自己的修改
+2. 如果推送失败，则因为远程分支比你的本地更新，需要先用`git pull`试图合并
 3. 如果合并有冲突，则解决冲突，并在本地提交
-4. 没有冲突或者解决掉冲突后，再用git push origin <branch-name>推送就能成功
+4. 没有冲突或者解决掉冲突后，再用`git push origin <branch-name>`推送就能成功
 
 # Git命令详解
 
@@ -196,7 +196,7 @@ HEAD^: 这指定了重置操作的目标提交。HEAD 是一个指向你当前�
 因为创建、合并和删除分支非常快，所以Git鼓励你使用分支完成某个任务，合并后再删掉分支，这和直接在master分支上工作效果是一样的，但过程更安全。
 
 - 查看分支：`git branch`
-- 创建分支dev：`git checkout -b dev`
+- 创建并切换到分支dev：`git checkout -b dev`
 - 切换分支：`git switch <branch name>`
 - 合并某分支到当前分支：`git merge <branch name>`
 - 删除分支（删除的时候不能在当前分支）：`git branch -d <branch name>`
