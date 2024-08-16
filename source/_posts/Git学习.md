@@ -38,7 +38,11 @@ _multiconfig.yml
 >
 > GitHub 有一个十分详细的针对数十种项目及语言的 `.gitignore` 文件列表， 你可以在 https://github.com/github/gitignore 找到它
 
+## 工作区，版本库和暂存区
 
+![image.png](https://cdn.nlark.com/yuque/0/2024/png/35312186/1706514518606-00b9fca9-4c60-4e47-adc0-a01b510976ef.png#averageHue=%23ececec&clientId=ub7619b40-6c08-4&from=paste&height=255&id=u0b073c97&originHeight=447&originWidth=889&originalType=binary&ratio=1.75&rotation=0&showTitle=false&size=119123&status=done&style=none&taskId=ud973f9ac-ffeb-493d-9fa0-3cad8aacf0f&title=&width=508)
+
+> 其中的stage称为是暂存区
 
 ## 子模块
 
@@ -98,6 +102,12 @@ git remote add origin git@gitee.com:Marches7/仓库名.git # 可以换成https�
 推送本地分支到远程库：`git push <remote> <branch>`
 
 > 远程库的名字就是origin，这是Git默认的叫法，也可以改成别的，但是origin这个名字一看就知道是远程库。
+>
+> ```bash
+> git clone <repo> -o booyah
+> ```
+>
+> 这样远程仓库名称就是booyah
 
 ### 3.3 流程
 
@@ -141,7 +151,7 @@ git remote add origin git@gitee.com:Marches7/仓库名.git # 可以换成https�
   或者简洁输出（每个提交一行）：
 
   ```bash
-  git log --pretty=oneline
+  git log --oneline
   ```
 
 - 查看当前git 分支状态：
@@ -151,13 +161,23 @@ git remote add origin git@gitee.com:Marches7/仓库名.git # 可以换成https�
   git status -s # 简化输出版
   ```
 
-## 撤销修改
+## 查看历史提交
 
-- 工作区，版本库和暂存区
+```bash
+git checkout <commit hash>
+```
 
-![image.png](https://cdn.nlark.com/yuque/0/2024/png/35312186/1706514518606-00b9fca9-4c60-4e47-adc0-a01b510976ef.png#averageHue=%23ececec&clientId=ub7619b40-6c08-4&from=paste&height=255&id=u0b073c97&originHeight=447&originWidth=889&originalType=binary&ratio=1.75&rotation=0&showTitle=false&size=119123&status=done&style=none&taskId=ud973f9ac-ffeb-493d-9fa0-3cad8aacf0f&title=&width=508)
+回主分支：
 
-> 其中的stage称为是暂存区
+```bash
+git checkout main
+```
+
+
+
+## 撤销操作
+
+### 撤销修改
 
 - 当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时：
 
@@ -191,21 +211,41 @@ HEAD^: 这指定了重置操作的目标提交。HEAD 是一个指向你当前�
 >
 > 在Git中任何已提交的东西几乎总是可以恢复的，但是未提交的东西丢失后很可能就无法恢复了。
 
+### 撤销合并
+
+在发生合并冲突或错误时采取中止合并而不是解决冲突时，执行下列命令，将仓库恢复到合并操作之前的状态：
+
+```bash
+git merge --abort
+```
+
 ## 分支管理
 
 因为创建、合并和删除分支非常快，所以Git鼓励你使用分支完成某个任务，合并后再删掉分支，这和直接在master分支上工作效果是一样的，但过程更安全。
 
 - 查看分支：`git branch`
+
 - 创建并切换到分支dev：`git checkout -b dev`
+
 - 切换分支：`git switch <branch name>`
-- 合并某分支到当前分支：`git merge <branch name>`
-- 删除分支（删除的时候不能在当前分支）：`git branch -d <branch name>`
 
-分支策略的几个原则：
+- 合并某分支到**当前分支**：`git merge <branch name>`
 
-- 首先，master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活
-- 干活都在dev分支上，也就是说，dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并到master上，在master分支发布1.0版本
-- 你和你的小伙伴们每个人都在dev分支上干活，每个人都有自己的分支，时不时地往dev分支上合并就可以了
+- 本地删除分支（删除的时候不能在当前分支）：`git branch -d <branch name>`
+
+- 推送分支到远程库：`git push origin <branch>`
+
+  > 此举会在远程库创建一个新的分支
+
+- 删除远程库分支：`git push origin --delete <branch name>`
+
+> [!TIP]
+>
+> 分支策略的几个原则：
+>
+> 只在`master`分支上保留完全稳定的代码，一些其他develop平行分支，被用来做后续开发或者测试稳定性，待到时机成熟，它们就可以被合并入master分支了。
+
+只在`master`
 
 ![image.png](https://cdn.nlark.com/yuque/0/2024/png/35312186/1706517597971-fed08c2c-03b2-43aa-88e9-d22ab1e743d7.png#averageHue=%23f7f5f4&clientId=ub7619b40-6c08-4&from=paste&height=147&id=ubedd3c26&originHeight=257&originWidth=997&originalType=binary&ratio=1.75&rotation=0&showTitle=false&size=72620&status=done&style=none&taskId=u4852a420-aea6-491c-ba1a-f50dddf2816&title=&width=569.7142857142857)
 
@@ -269,4 +309,29 @@ Git引入Tag的目的是将某个commit绑定上一个容易记住的名字。
   git remote remove <name>
   ```
 
-  
+
+## 变基
+
+- 原理
+
+  变基(rebase)的原理就是将提交到某一分支的所有修改都移至另一分支上，就好像"重新播放“一样。变基可以让提交历史变得简洁。
+
+- 变基的使用准则：
+
+  不要在不属于你的提交记录上，或者别人可能会基于某些提交开发的记录上使用变基。
+
+  否则双方的协作拉取会出现相同签名的提交记录，这让事情变得混乱。
+
+## 可视化分支历史
+
+- 在命令行
+
+  ```bash
+  git log --oneline --graph
+  ```
+
+  ![image-20240815185551739](https://gitee.com/Marches7/piture-bed/raw/master/img/image-20240815185551739.png)
+
+- 在VSCode中
+
+  ![image-20240815185649942](https://gitee.com/Marches7/piture-bed/raw/master/img/image-20240815185649942.png)
