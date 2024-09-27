@@ -5,7 +5,6 @@ categories:
 - Git
 tags:
 ---
-
 <head>
   <meta name="referrer" content="no-referrer" />
 </head>
@@ -21,7 +20,7 @@ tags:
 
 ## 文件忽略
 
-当我们希望有些文件无需纳入 Git 的管理，也不希望它们总出现在未跟踪文件列表。就可以在仓库根目录下编写`.gitignore`文件，文件内容支持正则表达式，下面是一个例子：
+当我们希望有些文件无需纳入 Git 的管理，也不希望它们总出现在未跟踪文件列表。就可以在仓库根目录下编写 `.gitignore`文件，文件内容支持正则表达式，下面是一个例子：
 
 ```bash
 .DS_Store
@@ -54,7 +53,7 @@ _multiconfig.yml
 git submodule add https://github.com/example/example-submodule.git path/to/submodule
 ```
 
-然后git会自动生成`.gitmodules`文件，并将子模块信息写入其中。
+然后git会自动生成 `.gitmodules`文件，并将子模块信息写入其中。
 
 `.gitmodules` 文件的内容可能如下所示：
 
@@ -111,10 +110,10 @@ git remote add origin git@gitee.com:Marches7/仓库名.git # 可以换成https�
 
 ### 3.3 流程
 
-1. 首先，可以试图用`git push origin <branch-name>`推送自己的修改
-2. 如果推送失败，则因为远程分支比你的本地更新，需要先用`git pull`试图合并
+1. 首先，可以试图用 `git push origin <branch-name>`推送自己的修改
+2. 如果推送失败，则因为远程分支比你的本地更新，需要先用 `git pull`试图合并
 3. 如果合并有冲突，则解决冲突，并在本地提交
-4. 没有冲突或者解决掉冲突后，再用`git push origin <branch-name>`推送就能成功
+4. 没有冲突或者解决掉冲突后，再用 `git push origin <branch-name>`推送就能成功
 
 # Git命令详解
 
@@ -126,14 +125,13 @@ git remote add origin git@gitee.com:Marches7/仓库名.git # 可以换成https�
   git config --global user.name "Your Name"
   git config --global user.email "email@example.com"
   ```
-
 - 查看已有配置和它们所在的文件
 
   ```bash
   git config --list --show-origin
   ```
 
-  输出可能会有重复的变量名，因为Git会从不同的文件中读取同一个配置（例如：/etc/gitconfig与~/.gitconfig）。这种情况下，Git会使用它找到的每一个变量的最后一个配置。可以通过输入`git config <key>`来检查某一项配置：
+  输出可能会有重复的变量名，因为Git会从不同的文件中读取同一个配置（例如：/etc/gitconfig与~/.gitconfig）。这种情况下，Git会使用它找到的每一个变量的最后一个配置。可以通过输入 `git config <key>`来检查某一项配置：
 
   ```bash
   $ git config user.name
@@ -153,7 +151,6 @@ git remote add origin git@gitee.com:Marches7/仓库名.git # 可以换成https�
   ```bash
   git log --oneline
   ```
-
 - 查看当前git 分支状态：
 
   ```bash
@@ -173,7 +170,14 @@ git checkout <commit hash>
 git checkout main
 ```
 
+回其他分支：
 
+```bash
+git log --all --oneline
+git checkout <commit hash>
+```
+
+> 因为git checkout相当于穿越回去了，所以单纯使用git log只能看到所在提交之前的所有提交，要加上--all参数才能看到所有提交。
 
 ## 撤销操作
 
@@ -184,23 +188,20 @@ git checkout main
   - `git checkout -- <file>`，会有两种情况：
     1. 一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态。
     2. 一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
-
 - 当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改：
 
   - 第一步：`git reset HEAD <file>`
   - 第二步：`git checkout -- <file>`
-
 - 已经提交了不合适的修改到版本库时，想要撤销本次提交，前提是没有提交到远程库：
 
   - 修改后重新提交（覆盖上一次提交）：`git commit --amend`
 
     > 这种方法的价值是可以稍微改进你的最后的提交，而不会让小修补这样的垃圾提交信息弄乱你的仓库历史。
-
-  - 回退到之前某个的版本：`git reset --hard HEAD^`或者`git reset --hard <完整的comit id>`
-
+    >
+  - 回退到之前某个的版本：`git reset --hard HEAD^`或者 `git reset --hard <完整的comit id>`
 - 如果已经提交到了远程库，并且希望远程库也回退
 
-  - 本地回退：`git reset --hard HEAD^`或者`git reset --hard <完整的comit id>`
+  - 本地回退：`git reset --hard HEAD^`或者 `git reset --hard <完整的comit id>`
   - 远程回退（强制push）：`git push --force`，这里采用默认的分支
 
 git reset: 这是 Git 中的主要命令之一，用于重置当前 HEAD 到指定状态。
@@ -224,41 +225,36 @@ git merge --abort
 因为创建、合并和删除分支非常快，所以Git鼓励你使用分支完成某个任务，合并后再删掉分支，这和直接在master分支上工作效果是一样的，但过程更安全。
 
 - 查看分支：`git branch`
-
 - 创建并切换到分支dev：`git checkout -b dev`
-
 - 切换分支：`git switch <branch name>`
-
 - 合并某分支到**当前分支**：`git merge <branch name>`
-
 - 本地删除分支（删除的时候不能在当前分支）：`git branch -d <branch name>`
-
 - 推送分支到远程库：`git push origin <branch>`
 
   > 此举会在远程库创建一个新的分支
-
+  >
 - 删除远程库分支：`git push origin --delete <branch name>`
 
 > [!TIP]
 >
 > 分支策略的几个原则：
 >
-> 只在`master`分支上保留完全稳定的代码，一些其他develop平行分支，被用来做后续开发或者测试稳定性，待到时机成熟，它们就可以被合并入master分支了。
+> 只在 `master`分支上保留完全稳定的代码，一些其他develop平行分支，被用来做后续开发或者测试稳定性，待到时机成熟，它们就可以被合并入master分支了。
 
-只在`master`
+只在 `master`
 
 ![image.png](https://cdn.nlark.com/yuque/0/2024/png/35312186/1706517597971-fed08c2c-03b2-43aa-88e9-d22ab1e743d7.png#averageHue=%23f7f5f4&clientId=ub7619b40-6c08-4&from=paste&height=147&id=ubedd3c26&originHeight=257&originWidth=997&originalType=binary&ratio=1.75&rotation=0&showTitle=false&size=72620&status=done&style=none&taskId=u4852a420-aea6-491c-ba1a-f50dddf2816&title=&width=569.7142857142857)
 
 ## 暂存分支内容
 
-当前分支的工作还未做完，需要新建一个Bug分支处理一个紧急Bug， 可以使用`git stash`可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作。
+当前分支的工作还未做完，需要新建一个Bug分支处理一个紧急Bug， 可以使用 `git stash`可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作。
 Bug修复完成后，需要恢复现场，有两种方法：
 
 - 一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除
 - 二是用git stash pop，恢复的同时把stash内容也删了
 
 但是之后会想到一个问题，我们修改的Bug在main分支上，意味着我们工作的分支也有Bug，有必要重复修改本分支的Bug再合并到当前分支上吗？有没有更简单的方法？
-为了方便操作，避免重复矛盾，Git专门提供了一个`git cherry-pick 4c805e2`命令，让我们能复制一个特定的提交到当前分支，4c805e2是Bug提交的commit的号码。
+为了方便操作，避免重复矛盾，Git专门提供了一个 `git cherry-pick 4c805e2`命令，让我们能复制一个特定的提交到当前分支，4c805e2是Bug提交的commit的号码。
 
 ## 标签管理
 
@@ -266,11 +262,11 @@ Git引入Tag的目的是将某个commit绑定上一个容易记住的名字。
 操作步骤：
 
 1. 首先切换到需要打标签的分支
-2. 敲命令`git tag <name>`就可以打一个标签，例如`git tag v1.0`
-3. 可以用`git tag`查看所有的标签
-4. 默认标签是打在最新提交的commit上的，如果要打在历史的commit上，就要找到历史的commit id，即`git log`，然后打上就行，即`git tag <name> <commit id>`。
+2. 敲命令 `git tag <name>`就可以打一个标签，例如 `git tag v1.0`
+3. 可以用 `git tag`查看所有的标签
+4. 默认标签是打在最新提交的commit上的，如果要打在历史的commit上，就要找到历史的commit id，即 `git log`，然后打上就行，即 `git tag <name> <commit id>`。
 5. 删除本地标签：`git tag -d <tagname>`
-6. 如果要推送某个标签到远程，使用命令`git push origin <tagname>`
+6. 如果要推送某个标签到远程，使用命令 `git push origin <tagname>`
 
 ## 远程仓库
 
@@ -281,7 +277,6 @@ Git引入Tag的目的是将某个commit绑定上一个容易记住的名字。
   origin	https://github.com/schacon/ticgit (fetch)
   origin	https://github.com/schacon/ticgit (push)
   ```
-
 - 查看与远程仓库的交互信息
 
   ```bash
@@ -298,7 +293,6 @@ Git引入Tag的目的是将某个commit绑定上一个容易记住的名字。
     Local ref configured for 'git push':
       master pushes to master (up to date)
   ```
-
 - 远程仓库的重命名和移除
 
   ```bash
@@ -309,13 +303,11 @@ Git引入Tag的目的是将某个commit绑定上一个容易记住的名字。
   git remote remove <name>
   ```
 
-
 ## 变基
 
 - 原理
 
   变基(rebase)的原理就是将提交到某一分支的所有修改都移至另一分支上，就好像"重新播放“一样。变基可以让提交历史变得简洁。
-
 - 变基的使用准则：
 
   不要在不属于你的提交记录上，或者别人可能会基于某些提交开发的记录上使用变基。
@@ -329,9 +321,7 @@ Git引入Tag的目的是将某个commit绑定上一个容易记住的名字。
   ```bash
   git log --oneline --graph
   ```
-
   ![image-20240815185551739](https://gitee.com/Marches7/piture-bed/raw/master/img/image-20240815185551739.png)
-
 - 在VSCode中
 
   ![image-20240815185649942](https://gitee.com/Marches7/piture-bed/raw/master/img/image-20240815185649942.png)
