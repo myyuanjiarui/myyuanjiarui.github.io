@@ -51,6 +51,10 @@ tags:
   ```py
   img = cv2.imread(/path/to/image)
   cv2.imshow('window_name', img)
+  ## Wait for 'q' key to be pressed
+  # while True:
+  #     if cv2.waitKey(1) & 0xFF == ord('q'):
+  #         break
   ```
 
   参数1是窗口的名字。
