@@ -1,6 +1,7 @@
 ---
 title: VMware Workstation虚拟机借助Windows主机上的Clash代理上网
 date: 2023-01-12 17:31
+description: 这是我在初学Linux阶段（系统搭建虚拟机的方式），对网络问题的又一次尝试突破，网络永远是一道坎
 categories:
 - 网络
 tags:

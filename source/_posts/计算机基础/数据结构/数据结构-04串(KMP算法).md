@@ -1,6 +1,7 @@
 ---
 title: 串(KMP算法)
 date: 2023-07-29 11:14 
+description: 考研时王道408的学习笔记
 categories:
 - 计算机基础
 tags:
