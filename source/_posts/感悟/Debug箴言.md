@@ -1,8 +1,8 @@
 ---
 title: Debug箴言
 date: 2024-11-20 17:59 
-description: Debug箴言
-categories:
+description: 这里是一些我在编程过程中遇到的一些匪夷所思，发人深省的Bug，因而迫不及待的想记录下来，又因为从Bug背后学到的知识非常的有价值，故以箴言命名。
+categories: 
 - 感悟
 tags:
 ---
@@ -74,7 +74,7 @@ tags:
    ```
 
    就会丢失第一列的数据，当然如果你的batch_size不等于2，那么就不会正常运行，会出现unpack error。
-<!-- more -->
+
 2. 对shell脚本的错误执行方式导致的指令丢失和重复执行
 
    如果想批量执行shell命令，我们经常会这样做，将要执行的shell命令全部写入.sh文件当中，再执行这个.sh文件。（例如run.sh）
