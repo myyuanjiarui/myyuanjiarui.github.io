@@ -130,4 +130,58 @@ tags:
 
    当然shebang还可以是Ruby，Java等等的解释器路径，由此我们也可以知道，文件的扩展名没有实际意义，所有的文件内容本质上都是字节，具体的执行还是要看解释器对文件的处理方式。
 
+3. 在模型的evaluation阶段，没有禁用梯度计算导致的显存爆炸
+
+   在模型的evaluation阶段，两个必须进行的操作：
+
+   ```python
+   ...
+   model.eval() # 关闭dropout层和batch normalization层，来防止结果的不一致
+   with torch.no_grad(): # 禁用梯度计算
+     ...
+     output = model(input) # 不会保存梯度了
+   ```
+
+   如果是函数用于evaluation（整个函数都禁止梯度计算），可以这么写：
+
+   ```python
+   ...
+   @torch.no_grad()
+   def func():
+   	...
    
+   model.eva()
+   func()
+   ```
+
+   一段小的测试脚本供飨：
+
+   ```py
+   model = nn.Linear(100, 100).cuda()
+   def func_1(x):
+       with torch.no_grad():
+           for _ in range(1000):
+               y = model(x)
+               x = y
+   
+   @torch.no_grad()
+   def func_2(x):
+       for _ in range(1000):
+           y = model(x)
+           x = y
+   
+   model.eval()
+   x = torch.randn(1000,100).cuda()
+   func_1(x)
+   print(torch.cuda.max_memory_allocated()/1e6)
+   
+   
+   torch.cuda.reset_max_memory_allocated()
+   func_2(x)
+   print(torch.cuda.max_memory_allocated()/1e6)
+   ```
+
+   
+
+4. 
+
