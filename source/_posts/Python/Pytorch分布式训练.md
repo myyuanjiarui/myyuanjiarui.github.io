@@ -1,4 +1,15 @@
-# Pytorch分布式训练
+---
+title: Pytorch分布式训练
+date: 2025-06-21 21:46 
+description: [Pytorch官方教程](https://docs.pytorch.org/tutorials/beginner/ddp_series_theory.html)
+categories:
+- Python
+tags:
+---
+<head>
+  <meta name="referrer" content="no-referrer" />
+</head>
+
 
 ## Distributed Data Parallel(DDP)
 
