@@ -1,3 +1,15 @@
+---
+title: JavaScript入门
+date: 2025-06-21 21:46 
+description: 廖雪峰老师的JavaScript网站学习（https://liaoxuefeng.com/books/javascript/introduction/index.html）笔记
+categories:
+- JavaScript笔记
+tags:
+---
+<head>
+  <meta name="referrer" content="no-referrer" />
+</head>
+
 # JavaScript入门
 
 ## 数据类型和变量
