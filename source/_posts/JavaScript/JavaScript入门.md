@@ -47,7 +47,7 @@ tags:
 
    ```js
    let name = '小明';
-   ler age = 20;
+   let age = 20;
    let message = `你好，${name}，你今年${岁}了！`;
    ```
 
@@ -189,4 +189,46 @@ tags:
    let a = 1;
    ```
 
-10. 
+10. 条件判断
+
+    > 和Java一样
+
+    `if () {...} else if {} else {...}`
+
+11. 循环
+
+    > for循环写法一和Java一样，while/do...while循环和Java一样。
+
+    写法一：
+
+    `for (i = 1; i <= 10000; i++)`
+
+    写法二：
+
+    `for (let key in keys) {}`
+
+    > [!CAUTION]
+    >
+    > for...in...的写法是将对象的所有**属性**依次循环列出来，不是元素，例如：
+    >
+    > ```js
+    > let o  = {
+    >   name: 'Jack',
+    >   age: 20,
+    >   city: 'Beijing'
+    > }
+    > for (let key in o) {
+    >   console.log(key); // 'name', 'age', 'city'
+    > }
+    > ```
+    >
+    > ```js
+    > let a = ['A', 'B', 'C'];
+    > for (let i in a) {
+    >   console.log(i); // '0', '1', '2'
+    > }
+    > ```
+    >
+    > for... in对Array的循环得到的是`String`而不是`Number`
+
+12.
