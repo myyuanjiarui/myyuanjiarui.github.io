@@ -1,7 +1,7 @@
 ---
 title: Git学习
 date: 2024-02-23 11:14 
-description: 
+description: 本文学习了Git版本控制的基本概念和常用命令，包括工作区与暂存区的关系、分支管理策略、远程仓库的协作流程，以及撤销修改、标签管理等实用操作。
 categories:
 - Git
 tags:

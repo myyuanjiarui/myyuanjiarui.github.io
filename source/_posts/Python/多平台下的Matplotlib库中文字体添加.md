@@ -1,6 +1,7 @@
 ---
 title: 多平台下的Matplotlib库中文字体添加
 date: 2024-09-27 11:14 
+description: 本文解决了Matplotlib库在不同操作系统下无法显示中文的问题，分别给出了Windows、Mac和Linux平台配置中文字体的方法，其中Linux需要手动下载安装字体文件。
 categories:
 - Python
 tags:

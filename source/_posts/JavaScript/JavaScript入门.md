@@ -1,7 +1,7 @@
 ---
 title: JavaScript入门
 date: 2025-06-21 21:46 
-description: 廖雪峰老师的JavaScript网站学习（https://liaoxuefeng.com/books/javascript/introduction/index.html）笔记
+description: JavaScript入门笔记
 categories:
 - JavaScript笔记
 tags:

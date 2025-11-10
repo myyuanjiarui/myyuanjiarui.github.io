@@ -1,6 +1,7 @@
 ---
 title: 基于Selenium库的python爬虫脚本，爬取painterest上的图片
 date: 2023-06-04 18:48 
+description: 本文编写了一个基于Selenium的Python爬虫脚本，用于自动化批量下载Pinterest网站上的图片，通过模拟浏览器滚动页面和解析img标签实现图片链接提取和下载。
 categories:
 - Python
 tags:

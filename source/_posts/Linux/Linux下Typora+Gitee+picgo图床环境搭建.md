@@ -1,6 +1,7 @@
 ---
 title: Linux下Typora+Gitee+picgo图床环境搭建
 date: 2023-01-15 00:02
+description: 在Linux系统下配置Typora+Gitee+PicGo图床环境的过程，解决了Markdown文档图片外链无法正常显示的问题，实现了图片的自动上传和链接管理。
 categories:
 - Linux
 tags:

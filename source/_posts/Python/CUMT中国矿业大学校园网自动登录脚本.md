@@ -1,6 +1,7 @@
 ---
 title: CUMT中国矿业大学校园网自动登录脚本
 date: 2023-02-26 21:14
+description: 本文编写了一个基于Python RPA库的自动化脚本，用于简化矿大校园网的登录流程，并通过Windows计划任务实现开机自动登录，解决了频繁手动登录的问题。
 categories:
 - Python
 tags:

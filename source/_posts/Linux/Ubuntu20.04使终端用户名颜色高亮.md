@@ -1,6 +1,7 @@
 ---
 title: Ubuntu20.04使终端用户名颜色高亮
 date: 2023-05-28 18:08 
+description: 解决了Ubuntu终端命令提示符不够醒目的问题，通过修改.bashrc配置文件启用彩色提示符，让终端输入命令更容易辨识和查找。
 categories:
 - Linux
 tags:

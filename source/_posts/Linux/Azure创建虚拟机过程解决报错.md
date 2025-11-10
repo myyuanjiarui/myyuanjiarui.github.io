@@ -1,6 +1,7 @@
 ---
 title: Azure创建虚拟机过程解决报错
 date: 2023-05-13 16:33 
+description: 记录了在Azure上创建虚拟机时遇到的"未注册订阅，无法使用命名空间Microsoft.Compute"报错，并给出了通过在订阅中手动注册资源提供程序来解决问题的方法。
 categories:
 - Linux
 tags:

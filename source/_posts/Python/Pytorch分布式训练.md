@@ -1,7 +1,7 @@
 ---
 title: Pytorch分布式训练
 date: 2025-06-21 21:46 
-description: Pytorch官方教程笔记
+description: 本文学习了PyTorch分布式训练的实现方法，包括DDP的工作原理、多GPU训练脚本的编写、使用torchrun实现容错训练和断点续连，以及多节点分布式训练的配置。
 categories:
 - Python
 tags:

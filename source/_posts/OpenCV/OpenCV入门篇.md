@@ -1,6 +1,7 @@
 ---
 title: OpenCV入门篇
 date: 2024-10-15 10:02
+description: 本文学习了OpenCV图像处理的基础操作，包括图片的加载显示保存、摄像头和视频处理、颜色空间转换、阈值分割、图像几何变换和绘图功能的使用方法。
 categories:
 - OpenCV
 tags:
