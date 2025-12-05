@@ -5,6 +5,7 @@ description: 在Linux系统下配置Typora+Gitee+PicGo图床环境的过程，�
 categories:
 - Linux
 tags:
+top: 1
 ---
 <head>
   <meta name="referrer" content="no-referrer" />

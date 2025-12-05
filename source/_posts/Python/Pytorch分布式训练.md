@@ -5,6 +5,7 @@ description: 本文学习了PyTorch分布式训练的实现方法，包括DDP的
 categories:
 - Python
 tags:
+top: 1
 ---
 [Pytorch官方教程](https://docs.pytorch.org/tutorials/beginner/ddp_series_theory.html)
 
