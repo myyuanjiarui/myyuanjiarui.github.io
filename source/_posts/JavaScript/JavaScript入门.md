@@ -11,6 +11,7 @@ top: 1
   <meta name="referrer" content="no-referrer" />
 </head>
 
+
 # JavaScript入门
 
 ## 数据类型和变量
