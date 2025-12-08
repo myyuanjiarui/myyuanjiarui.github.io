@@ -13,3 +13,13 @@ tags:
 
 # Test
 ## Test
+
+```js
+let i = $('[name^=icon]'); // 前缀,找出所有<... name="icon*">
+let n = $('[name$=with]'); // 后缀,找出所有<... name="*with">
+```
+
+```javascript
+let i = $('[name^=icon]'); // 前缀,找出所有<... name="icon*">
+let n = $('[name$=with]'); // 后缀,找出所有<... name="*with">
+```
