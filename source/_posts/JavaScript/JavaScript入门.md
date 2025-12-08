@@ -26,6 +26,7 @@ tags:
    -99;
    NaN; // NaN表示Not a Number，当无法计算结果时用NaN表示
    Infinity; // Infinity表示无限大，当数值超过了JavaScript的Number所能表示的最大值时，就表示为Infinity
+   ```
 
 2. 字符串
 
