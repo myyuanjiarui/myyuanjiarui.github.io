@@ -6,9 +6,7 @@ categories:
 - JavaScript笔记
 tags:
 ---
-<head>
-  <meta name="referrer" content="no-referrer" />
-</head>
+
 
 
 
