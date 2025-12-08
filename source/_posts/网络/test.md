@@ -1,11 +1,14 @@
 ---
-title: Test
-date: 2025-12-01 17:31
-description: Test
+title: JavaScript入门
+date: 2025-12-07 20:34 
+description: JavaScript入门笔记
 categories:
-- 网络
+- JavaScript笔记
 tags:
 ---
+<head>
+  <meta name="referrer" content="no-referrer" />
+</head>
 
 
 # Test
