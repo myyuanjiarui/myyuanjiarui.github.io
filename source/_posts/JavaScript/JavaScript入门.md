@@ -5,6 +5,7 @@ description: JavaScript入门笔记
 categories:
 - JavaScript笔记
 tags:
+top: 1
 ---
 <head>
   <meta name="referrer" content="no-referrer" />
