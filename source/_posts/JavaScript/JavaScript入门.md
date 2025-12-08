@@ -12,6 +12,7 @@ top: 1
 </head>
 
 
+
 # JavaScript入门
 
 ## 数据类型和变量
@@ -26,7 +27,6 @@ top: 1
    -99;
    NaN; // NaN表示Not a Number，当无法计算结果时用NaN表示
    Infinity; // Infinity表示无限大，当数值超过了JavaScript的Number所能表示的最大值时，就表示为Infinity
-   ```
 
 2. 字符串
 
@@ -191,13 +191,11 @@ top: 1
    ```js
    let a = 1;
    ```
-
    > JavaScript的`'use strict'`模式是用来检查变量是否有用`var`或者`let`申明，否则会报错
 
 10. 字符串
 
 字符串是不可变的，如果对字符串的某个索引赋值，不会产生任何报错，也不会有任何效果。
-
 ```js
 let s = 'Text';
 s[0] = 'X';
@@ -207,38 +205,31 @@ console.log(s); // s仍然为'Test'
 11. 数组
 
 JavaScript的`Array`可以包含任意数据类型，并通过索引来访问每个元素
-
 ```js
 let arr = [1, 2, 3, 'Alice', null, true]
 ```
-
 JavaScript对数组的索引如果超出范围，会直接改变数组的大小，但是不会报错，元素值为`undefined`。
-
 - `slice(start, end)`函数：
-  截取数组的片段，表示截取数组[start, end)，start默认为0，end默认为数组长度。
+截取数组的片段，表示截取数组[start, end)，start默认为0，end默认为数组长度。
 - `push(element, ...)`函数：
-  表示向数组的末尾添加若干元素。
+表示向数组的末尾添加若干元素。
 - `pop()`函数：
-  表示把数组的最后一个元素删除。
+表示把数组的最后一个元素删除。
 - `unshift(element, ...)`函数：
-  表示向数组的开头添加若干元素。
+表示向数组的开头添加若干元素。
 - `shift()`函数：
-  表示把数组的第一个元素删除。
+表示把数组的第一个元素删除。
 - `concat()`函数：
-  把数组连接起来，注意concat()并没有修改当前`Array`，而是返回了一个新的Array。
-
+把数组连接起来，注意concat()并没有修改当前`Array`，而是返回了一个新的Array。
 ```js
 let a = ['A', 'B', 'C'];
 let arr = a.concat([1, 2, 3]); // 数组a没有改变
 ```
-
 - `join(str)`函数：
-  表示把当前数组的所有元素用指定的字符串连接起来。然后返回连接后的字符串。
-
+表示把当前数组的所有元素用指定的字符串连接起来。然后返回连接后的字符串。
 12. 对象
-    JavaScript的对象，是一个无序的集合数据类型，它由若干键值对组成。
-    例如：
-
+JavaScript的对象，是一个无序的集合数据类型，它由若干键值对组成。
+例如：
 ```js
 let xiaoming = {
     name: '小明',
@@ -251,9 +242,7 @@ let xiaoming = {
 xiaoming.name; // '小明'
 xiaoming.birth; // 1990
 ```
-
 对象的属性必须是一个有效的变量名。如果属性包含特殊字符，必须用`''`括起来。访问属性必须用`['XXX']`来访问。
-
 ```js
 let xiaohong = {
     name: '小红',
@@ -261,9 +250,7 @@ let xiaohong = {
 };
 xiaohong['middle-school'];
 ```
-
 13. 条件判断
-
 ```js
 if {
    ...
@@ -273,22 +260,17 @@ if {
    ...
 }
 ```
-
 JavaScript把`null`、`undefined`、`0`、`NaN`和空字符串`''`视为`false`，其他值一概视为`true`。
 
 14. 循环
-
 - 初始条件+结束条件+递增条件
-
 ```js
 for(i = 1; i<=1000; i++) {
    ...
 }
 ```
-
 - `for.. in...`
-  将一个对象的所有属性遍历出来
-
+将一个对象的所有属性遍历出来
 ```js
 let o = {
     name: 'Jack',
@@ -299,9 +281,7 @@ for (let key in o) {
     console.log(key); // 'name', 'age', 'city'
 }
 ```
-
 要过滤掉对象继承的属性，用hasOwnProperty()来实现：
-
 ```js
 let o = {
     name: 'Jack',
@@ -314,9 +294,7 @@ for (let key in o) {
     }
 }
 ```
-
 由于Array也是对象，而它的每个元素的索引被视为对象的属性，因此，for ... in循环可以直接循环出Array的索引：
-
 ```js
 let a = ['A', 'B', 'C'];
 for (let i in a) {
@@ -324,7 +302,6 @@ for (let i in a) {
     console.log(a[i]); // 'A', 'B', 'C'
 }
 ```
-
 - `for... of ...`
 
 `for... of ...`的提出是为了解决Map和Set数据结构没有下标，不能使用下标访问元素，因此ES6标准引入了新的`iterable`对象，`Array`，`Map`和`Set`
@@ -344,13 +321,11 @@ for (let x of m) { // 遍历Map
     console.log(x[0] + '=' + x[1]);
 }
 ```
-
 > 注意，`for... in ...`是遍历对象的**属性**，而`for ... of ...`是遍历iterable的**元素**。
 
 - `forEach`
 
 遍历`iterable`对象还可以使用内置的`forEach`方法：
-
 ```js
 // Array对象
 let a = ['A', 'B', 'C'];
@@ -375,7 +350,6 @@ m.forEach(function (value, key, map) {
 15. `Map`
 
 由于对象的数据结构中，属性只能是字符串，在ES6规范中，引入了`Map`数据结构，其具有极快的查找速度。
-
 ```js
 let m = new Map([['Michael', 95], ['Bob', 75], ['Tracy', 85]]);
 m.get('Michael'); // 95，查找
@@ -689,7 +663,7 @@ jQuery的选择器可以帮助我们快速定位到一个或多个DOM节点。
    1. 后代选择器：`$('ancestor descendant dedescendant ...')`
 
       如果多个DOM元素有层级关系，可以用`$('ancestor descendant dedescendant ...')`来选择，例如：
-
+      
       ```html
       <div class="testing">
           <ul class="lang">
@@ -699,9 +673,9 @@ jQuery的选择器可以帮助我们快速定位到一个或多个DOM节点。
           </ul>
       </div>
       ```
-
+      
       要选出JavaScript所在的DOM，可以用层级选择器，下面三种方法都可以选出`[<li class="lang-javascript">JavaScript</li>]`：
-
+      
       ```js
       $('div.testing ul.lang li.lang-javascript'); // 三个层级均指定
       $('ul.lang li.lang-javascript'); // 指定父子两个层级
@@ -709,9 +683,9 @@ jQuery的选择器可以帮助我们快速定位到一个或多个DOM节点。
       ```
 
    2. 子选择器：`$(parent>child)`
-
+   
       仅匹配parent的**直接子元素**。例如对上面的HTML例子，想要选出JavaScript所在的DOM，只能写成：
-
+   
       ```js
       $('ul.lang>li.lang-javascript');
       ```
@@ -803,9 +777,9 @@ jQuery能够绑定的事件包括但不限于：
     >
     > ```js
     > $(document).ready(function() {
-    > $('#testForm').submit(function() {
-    >  alert('submit!');
-    > });
+    >   $('#testForm').submit(function() {
+    >     alert('submit!');
+    >   });
     > });
     > ```
     >
@@ -813,9 +787,9 @@ jQuery能够绑定的事件包括但不限于：
     >
     > ```js
     > $(function () {
-    > $('#testForm').submit(function() {
-    >  alert('submit');
-    > });
+    >   $('#testForm').submit(function() {
+    >     alert('submit');
+    >   });
     > });
     > ```
 
