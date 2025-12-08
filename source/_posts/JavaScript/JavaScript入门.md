@@ -1,6 +1,6 @@
 ---
 title: JavaScript入门
-date: 2025-12-08 20:34 
+date: 2025-12-07 20:34 
 description: JavaScript入门笔记
 categories:
 - JavaScript笔记
