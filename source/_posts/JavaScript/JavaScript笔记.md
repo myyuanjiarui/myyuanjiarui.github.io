@@ -6,7 +6,9 @@ categories:
 - JavaScript笔记
 tags:
 ---
-
+<head>
+  <meta name="referrer" content="no-referrer" />
+</head>
 
 
 
@@ -565,21 +567,23 @@ m.set('Adam', 100); // 添加新的键值对
 
   但是注意**异步**函数的错误处理需要定义在执行时，调用时不一定会执行所以可能看不到错误捕捉。
 
-## jQuery
+## jQuery库
 
 jQuery是一款用于简化JavaScript对HTML文档操作的函数工具库，它的优势是：
 
 1. 消除浏览器差异：兼容不同的浏览器版本
+
 2. 操作DOM的方法简洁高效：例如用`$('#test')`就能代替`document.getElementById('test')`
+
+   - `$`符号
+
+     jQuery把所有功能全部封装在一个全局变量`jQuery`中，而`jQuery`的别名是`$`符号。
+
+     ```js
+     $ === jQuery; // true
+     ```
+
 3. 轻松实现动画、修改CSS等各种操作
-
-- `$`符号
-
-  jQuery把所有功能全部封装在一个全局变量`jQuery`中，而`jQuery`的别名是`$`符号。
-
-  ```js
-  $ === jQuery; // true
-  ```
 
 ### 选择器
 
